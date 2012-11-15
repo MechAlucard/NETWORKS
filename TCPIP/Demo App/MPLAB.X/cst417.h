@@ -30,7 +30,7 @@ typedef struct __attribute__((aligned(2), packed))
 
 } CST417_PACKET;
 
-static BOOL CST417SendEth(CST417_PACKET * packet);
+void CST417SendEth(CST417_PACKET * packet);
 #ifdef	__cplusplus
 }
 #endif

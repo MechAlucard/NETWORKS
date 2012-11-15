@@ -539,7 +539,7 @@ void MACPutHeader(MAC_ADDR *remote, BYTE type, WORD dataLen)
 void CST417PutHeader(MAC_ADDR *remote, BYTE type, WORD dataLen)
 {
 	_TxCurrSize=dataLen+sizeof(ETHER_HEADER);
-	_CurrWrPtr=(unsigned char*)_pTxCurrDcpt->dataBuff;		// point at the beg of the buffer
+	_CurrWrPtr=(unsigned char*)_pTxCurrDcpt->dataBuff;		// point at the beginning of the buffer
 
 
 	memcpy(_CurrWrPtr, remote, sizeof(*remote));

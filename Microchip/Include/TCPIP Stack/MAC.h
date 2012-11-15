@@ -105,6 +105,7 @@ typedef struct  __attribute__((aligned(2), packed))
 
 #define MAC_IP      	(0x00u)
 #define MAC_ARP     	(0x06u)
+#define CST417          (0xF0E)
 #define MAC_UNKNOWN 	(0xFFu)
 
 

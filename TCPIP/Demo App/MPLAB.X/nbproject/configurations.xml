@@ -22054,8 +22054,8 @@
         <property key="legacy-libc" value="false"/>
         <property key="no-start-files" value="false"/>
       </C32Global>
-      <ICD3PlatformTool>
-      </ICD3PlatformTool>
+      <SKDEPIC32PlatformTool>
+      </SKDEPIC32PlatformTool>
     </conf>
     <conf name="XC32-PIC32_GP_SK_ENC28" type="2">
       <toolsSet>

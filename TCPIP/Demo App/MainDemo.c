@@ -61,7 +61,7 @@
 
 // Include all headers for any enabled TCPIP Stack functions
 #include "TCPIP Stack/TCPIP.h"
-
+#include "MPLAB.X/cst417.h"
 #if defined(STACK_USE_ZEROCONF_LINK_LOCAL)
 #include "TCPIP Stack/ZeroconfLinkLocal.h"
 #endif
@@ -297,6 +297,11 @@ int main(void)
     // job.
     // If a task needs very long time to do its job, it must be broken
     // down into smaller pieces so that other tasks can have CPU time.
+    CST417_PACKET packet;
+    int i = 0;
+    packet.Operation = 5;
+    for(i =0 ; i< 10; i++)
+        packet.Data[i] = i;
     while(1)
     {
         // Blink LED0 (right most one) every second.
@@ -304,6 +309,7 @@ int main(void)
         {
             t = TickGet();
             LED0_IO ^= 1;
+            CST417SendEth(&packet);
         }
 
         // This task performs normal stack task including checking
