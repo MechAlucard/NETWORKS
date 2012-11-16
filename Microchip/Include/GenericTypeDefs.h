@@ -62,6 +62,7 @@
 /* get compiler defined type definitions (NULL, size_t, etc) */
 #include <stddef.h> 
 
+
 typedef enum _BOOL { FALSE = 0, TRUE } BOOL;    /* Undefined size */
 typedef enum _BIT { CLEAR = 0, SET } BIT;
 
@@ -545,5 +546,9 @@ typedef union
 } QWORD_VAL;
 
 #undef __EXTENSION
-
+// Structure to contain a MAC address
+typedef struct __attribute__((__packed__))
+{
+  BYTE v[6];
+} MAC_ADDR;
 #endif /* __GENERIC_TYPE_DEFS_H_ */

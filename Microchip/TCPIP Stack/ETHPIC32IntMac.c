@@ -689,6 +689,10 @@ BOOL MACGetHeader(MAC_ADDR *remote, BYTE* type)
 			{
 				*type=newType.v[1];
 			}
+                        else if(newType.v[0] == 0x0F && newType.v[1] == 0x0E )
+                        {
+                            *type=newType.v[1];
+                        }
 			
 			_stackMgrRxOkPkts++;
 		}

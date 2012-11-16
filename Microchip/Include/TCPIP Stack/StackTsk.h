@@ -73,10 +73,10 @@
 #endif
 
 // Structure to contain a MAC address
-typedef struct __attribute__((__packed__))
-{
-    BYTE v[6];
-} MAC_ADDR;
+//typedef struct __attribute__((__packed__))
+//{
+//    BYTE v[6];
+//} MAC_ADDR;
 
 // Definition to represent an IP address
 #define IP_ADDR		DWORD_VAL

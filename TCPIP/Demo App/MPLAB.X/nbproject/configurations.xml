@@ -141,6 +141,7 @@
       <itemPath>../TCPIPConfig.h</itemPath>
       <itemPath>../WF_Config.h</itemPath>
       <itemPath>cst417.h</itemPath>
+      <itemPath>dbg.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LibraryFiles"
                    displayName="Library Files"
@@ -264,6 +265,7 @@
       <itemPath>../CustomSSLCert.c</itemPath>
       <itemPath>../MainDemo.c</itemPath>
       <itemPath>cst417.c</itemPath>
+      <itemPath>dbg.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

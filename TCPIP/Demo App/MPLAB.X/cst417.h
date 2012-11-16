@@ -25,12 +25,27 @@ extern "C" {
 // 2 - 3 bytes = LED control value: 1 -> ON, 0 -> OFF
 typedef struct __attribute__((aligned(2), packed))
 {
+    BYTE        Destination;
+    BYTE        Source;
     WORD        Operation;   // operation code
     BYTE        Data[10];     // holds 10 bytes of data dependant on the opcode
 
 } CST417_PACKET;
 
+typedef struct __attribute__((aligned(2), packed))
+{
+    MAC_ADDR    Address;
+    BYTE        Node_id;
+} CST417Node;
+void CST417Process();
 void CST417SendEth(CST417_PACKET * packet);
+//returns the pointer to the MAC address if found else returns void pointer
+void GetAddress(MAC_ADDR * address, BYTE node);
+//adds and address and node_id pair if node_id does not exist
+//returns true if found, false if not
+BOOL AddAddress(MAC_ADDR * address, BYTE node);
+
+void CST417PutHeader(MAC_ADDR *remote, BYTE type, WORD dataLen);
 #ifdef	__cplusplus
 }
 #endif

@@ -58,7 +58,7 @@
  * and this file must define the AppConfig variable as described below.
  */
 #define THIS_IS_STACK_APPLICATION
-
+#include "MPLAB.X/dbg.h"
 // Include all headers for any enabled TCPIP Stack functions
 #include "TCPIP Stack/TCPIP.h"
 #include "MPLAB.X/cst417.h"
@@ -298,10 +298,13 @@ int main(void)
     // If a task needs very long time to do its job, it must be broken
     // down into smaller pieces so that other tasks can have CPU time.
     CST417_PACKET packet;
+    packet.Source = 0x65;
+    packet.Destination = 0x67;
     int i = 0;
-    packet.Operation = 5;
+    packet.Operation = 2;
     for(i =0 ; i< 10; i++)
-        packet.Data[i] = i;
+        packet.Data[i] = 0x01;
+
     while(1)
     {
         // Blink LED0 (right most one) every second.

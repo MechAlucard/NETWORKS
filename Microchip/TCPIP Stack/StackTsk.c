@@ -53,6 +53,10 @@
 ********************************************************************/
 #define __STACKTSK_C
 
+#ifndef CST417_active
+#define CST417_active
+#endif
+#include "../MPLAB.X/cst417.h"
 #include "TCPIP Stack/TCPIP.h"
 
 #if defined( WF_CS_TRIS )
@@ -346,6 +350,11 @@ void StackTask(void)
 		// Dispatch the packet to the appropriate handler
 		switch(cFrameType)
 		{
+                        #ifdef CST417_active
+                        case MAC_CST417:
+                            CST417Process();
+                                break;
+                        #endif
 			case MAC_ARP:
 				ARPProcess();
 				break;
