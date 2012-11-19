@@ -300,19 +300,20 @@ int main(void)
     CST417_PACKET packet;
     packet.Source = 0x65;
     packet.Destination = 0x67;
-    int i = 0;
-    packet.Operation = 2;
-    for(i =0 ; i< 10; i++)
-        packet.Data[i] = 0x01;
-
+    packet.Operation = 0;
+    CST417SendEth(&packet);
     while(1)
     {
+        packet.Operation = 2;
+        packet.Data[0] = BUTTON0_IO;
+        packet.Data[1] = BUTTON1_IO;
+        packet.Data[2] = BUTTON2_IO;
+        CST417SendEth(&packet);
         // Blink LED0 (right most one) every second.
         if(TickGet() - t >= TICK_SECOND/2ul)
         {
             t = TickGet();
             LED0_IO ^= 1;
-            CST417SendEth(&packet);
         }
 
         // This task performs normal stack task including checking
