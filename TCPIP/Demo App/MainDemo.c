@@ -297,23 +297,39 @@ int main(void)
     // job.
     // If a task needs very long time to do its job, it must be broken
     // down into smaller pieces so that other tasks can have CPU time.
+#define B
+
     CST417_PACKET packet;
+#ifdef A
     packet.Source = 0x65;
     packet.Destination = 0x67;
-    packet.Operation = 0;
-    CST417SendEth(&packet);
+#endif
+#ifdef B
+    packet.Source = 0x67;
+    packet.Destination = 0x65;
+#endif
     while(1)
     {
-        packet.Operation = 2;
-        packet.Data[0] = BUTTON0_IO;
-        packet.Data[1] = BUTTON1_IO;
-        packet.Data[2] = BUTTON2_IO;
-        CST417SendEth(&packet);
+        int try = 10;
         // Blink LED0 (right most one) every second.
         if(TickGet() - t >= TICK_SECOND/2ul)
         {
+            //if(try > 0)
+            {
+                packet.Operation = 0;
+                CST417SendEth(&packet);
+           //     try--;
+            }
+           // else
+            {
+                packet.Operation = 2;
+                packet.Data[0] = !BUTTON0_IO;
+                packet.Data[1] = !BUTTON1_IO;
+                packet.Data[2] = !BUTTON2_IO;
+                CST417SendEth(&packet);
+            }
             t = TickGet();
-            LED0_IO ^= 1;
+            LED0_IO ^= 1;   
         }
 
         // This task performs normal stack task including checking

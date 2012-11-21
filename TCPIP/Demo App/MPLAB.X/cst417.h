@@ -43,7 +43,7 @@ void CST417SendEth(CST417_PACKET * packet);
 void GetAddress(MAC_ADDR * address, BYTE node);
 //adds and address and node_id pair if node_id does not exist
 //returns true if found, false if not
-BOOL AddAddress(MAC_ADDR * address, BYTE node);
+BOOL AddAddress(BYTE * address, BYTE node);
 
 void CST417PutHeader(MAC_ADDR *remote, BYTE type, WORD dataLen);
 #ifdef	__cplusplus

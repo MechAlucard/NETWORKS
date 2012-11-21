@@ -548,8 +548,8 @@ void CST417PutHeader(MAC_ADDR *remote, BYTE type, WORD dataLen)
 	_CurrWrPtr+=sizeof(AppConfig.MyMACAddr);
 
 
-	*_CurrWrPtr++=0x0F;
-        *_CurrWrPtr++=0x0E;
+	*_CurrWrPtr++=0xF0;
+        *_CurrWrPtr++=0xE0;
 	//*_CurrWrPtr++=(type == MAC_IP) ? ETHER_IP : ETHER_ARP;
 
 }
@@ -689,7 +689,7 @@ BOOL MACGetHeader(MAC_ADDR *remote, BYTE* type)
 			{
 				*type=newType.v[1];
 			}
-                        else if(newType.v[0] == 0x0F && newType.v[1] == 0x0E )
+                        else if(newType.v[0] == 0xF0 && newType.v[1] == 0xE0 )
                         {
                             *type=newType.v[1];
                         }

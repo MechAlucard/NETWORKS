@@ -1,6 +1,12 @@
 #include "cst417.h"
 #include "TCPIP Stack/TCPIP.h"
+#define B
+#ifdef A
 #define TYLER_CODE 0x65
+#endif
+#ifdef B
+#define TYLER_CODE 0x67
+#endif
 #define REQUEST 0
 #define REPLY 1
 #define CONTROL 2
@@ -24,7 +30,7 @@ void CST417Process()
     MAC_ADDR source;
     BYTE type;
     CST417_PACKET packet;
-    MACGetHeader(&source,&type);
+    //MACGetHeader(&source,&type);
     MACGetArray((BYTE*)&packet, sizeof(packet));
     MACDiscardRx();
   
@@ -47,13 +53,13 @@ void CST417Process()
         else if(packet.Operation == REPLY)
         {
             dbg("reply recived\n");
-            AddAddress(&source,packet.Source);
+            AddAddress(packet.Data,packet.Source);
         }
         //control LED at Node_ID
         else if(packet.Operation == CONTROL)
         {
             dbg("control recived\n");
-            if(packet.Destination == TYLER_CODE)
+            //if(packet. == TYLER_CODE)
             {
              
                     LED0_IO = packet.Data[0];
@@ -81,7 +87,7 @@ void GetAddress(MAC_ADDR * address, BYTE node)
 }
 //adds and address and node_id pair if node_id does not exist
 //returns true if found, false if not
-BOOL AddAddress(MAC_ADDR * address, BYTE node)
+BOOL AddAddress(BYTE * address, BYTE node)
 {
     int i = 0;
     while( i <= table_end)
@@ -90,12 +96,13 @@ BOOL AddAddress(MAC_ADDR * address, BYTE node)
         {
             return TRUE;
         }
+        i++;
     }
     if(table_end < TABLE_SIZE)
     {
-        table_end++;
         AddressTable[table_end].Node_id = node;
-        memcpy(AddressTable[table_end].Address.v,address->v,sizeof(MAC_ADDR));
+        memcpy(AddressTable[table_end].Address.v,address,sizeof(MAC_ADDR));
+        table_end++;
     }
     return FALSE;
 }
